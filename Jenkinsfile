@@ -76,7 +76,11 @@ pipeline {
         stage('Clean Gradle Cache') {
             steps {
                 bat 'rd /s /q %USERPROFILE%\\.gradle || echo no gradle cache'
-                bat 'rd /s /q android\\.gradle || echo no android cache'
+                bat 'if exist android\.gradle (
+                        rd /s /q android\.gradle
+                    ) else (
+                        echo no android cache
+                    )'
             }
         }
         // ================= BUILD =================
