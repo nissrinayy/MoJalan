@@ -22,7 +22,6 @@ class RecommendedTourGuidesCard extends StatelessWidget {
         ),
         child: Container(
           height: 150,
-          width: 200,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(20),
           ),
@@ -36,7 +35,7 @@ class RecommendedTourGuidesCard extends StatelessWidget {
                   child: Row(
                     children: [
                       Container(
-                        width: 150, // 1/4 dari lebar container
+                        width: 120,
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(20),
                           child: Image.asset(
