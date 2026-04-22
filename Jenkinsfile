@@ -73,20 +73,13 @@ pipeline {
                 """
             }
         }
-        stage('Clean Gradle Cache') {
+        stage('Hard Reset Gradle') {
             steps {
                 bat '''
-                if exist %USERPROFILE%\\.gradle (
-                    rd /s /q %USERPROFILE%\\.gradle
-                ) else (
-                    echo no gradle cache
-                )
-
-                if exist android\\.gradle (
-                    rd /s /q android\\.gradle
-                ) else (
-                    echo no android cache
-                )
+                flutter clean
+                rd /s /q %USERPROFILE%\\.gradle || echo no cache
+                rd /s /q android\\.gradle || echo no cache
+                cd android && gradlew.bat clean || echo clean done
                 '''
             }
         }
