@@ -34,7 +34,7 @@ pipeline {
         PATH = "${FLUTTER_HOME}\\bin;${JAVA_HOME}\\bin;${ANDROID_HOME}\\platform-tools;${ANDROID_HOME}\\emulator;${env.PATH}"
 
         AVD_NAME    = "Pixel_4_XL"
-        APP_PACKAGE = "com.ragheb.neumorphic_calculator"
+        APP_PACKAGE = "com.example.mojalan"
 
         MOBSF_URL   = "http://localhost:8000"
         MOBSF_TOKEN = "67f8dcdbaf63751750653685407053c3e1762a3394c5833de1d00379ca06c0fe"
@@ -52,7 +52,7 @@ pipeline {
         // ================= CHECKOUT =================
         stage('Checkout') {
             steps {
-                git branch: 'main', url: 'https://github.com/nissrinayy/Neumorphic-Calculator.git'
+                git branch: 'main', url: 'https://github.com/nissrinayy/MoJalan.git'
             }
         }
 
@@ -99,7 +99,7 @@ pipeline {
                     bat "\"${AAPT}\" dump badging \"${apkPath}\" | findstr package"
 
                     def timestamp = new Date().format("yyyyMMdd_HHmmss")
-                    def finalApk = "${env.WORKSPACE}\\apk-outputs\\calculator-${params.BUILD_TYPE}-${timestamp}.apk"
+                    def finalApk = "${env.WORKSPACE}\\apk-outputs\\mojalan-${params.BUILD_TYPE}-${timestamp}.apk"
 
                     bat "copy \"${apkPath}\" \"${finalApk}\""
 
@@ -137,7 +137,7 @@ pipeline {
                     bat "adb install -r \"${env.FINAL_APK}\""
 
                     echo "Installed apps:"
-                    bat "adb shell pm list packages | findstr ragheb"
+                    bat "adb shell pm list packages | findstr mojalan"
                 }
             }
         }
